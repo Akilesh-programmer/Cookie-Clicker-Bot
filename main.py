@@ -9,24 +9,30 @@ cookie = driver.find_element_by_xpath('//*[@id="cookie"]')
 
 game_is_on = True
 
-store = driver.find_elements_by_css_selector("#store div")
-new_store = store[::-1]
+
 
 def game():
-
-
-while game_is_on:
+    store = driver.find_elements_by_css_selector("#store div")
+    new_store = store[::-1]
     for n in range(150):
         cookie.click()
 
     print("Hello World")
     
     for thing in new_store:
-        print(thing.get_attribute("id"))
         try:
             thing.click()
         except:
+            print("*")
             pass
-        else:
-            game()
+            
+
+time_ran = 0
+while game_is_on:
+    time_ran += 1
+    game()
+    if time_ran == 60:
+        game_is_on = False
+        cookies_per_second = driver.find_element_by_xpath('//*[@id="cps"]')
+        print(cookies_per_second.text)
     
