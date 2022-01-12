@@ -31,8 +31,3 @@ time_ran = 0
 while game_is_on:
     time_ran += 1
     game()
-    if time_ran == 60:
-        game_is_on = False
-        cookies_per_second = driver.find_element_by_xpath('//*[@id="cps"]')
-        print(cookies_per_second.text)
-    
